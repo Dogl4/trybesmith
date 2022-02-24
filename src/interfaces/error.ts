@@ -14,9 +14,12 @@ export interface IMapError {
 
 export interface IMapErrorJoi {
   'any.required': number;
+  'array.base'?: number;
+  'array.includesRequiredUnknowns'?: number;
+  'number.base': number;
+  'number.min': number;
   'string.base': number;
   'string.min': number;
-  'number.min': number;
   'string.length': number;
   'string.empty': number;
 }
