@@ -6,7 +6,7 @@ export interface IUserJoi {
 }
 
 export interface IUser {
-  username: string;
+  username?: string;
   classe?: string;
   level?: number;
   password?: string;

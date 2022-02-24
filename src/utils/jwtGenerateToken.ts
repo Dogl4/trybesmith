@@ -7,7 +7,7 @@ export default (user: IUser) => {
   const payload = { isAdmin: false, user };
   const token = jwt.sign(payload, JWT_SCRET, {
     algorithm: 'HS256',
-    expiresIn: '1h',
+    expiresIn: '2d',
   });
 
   return token;
