@@ -1,4 +1,6 @@
 import { Response, Request, Router } from 'express';
+import rescue from 'express-rescue';
+import schemas from '../schemas';
 import { loginService } from '../services';
 
 const loginUser = async (req: Request, res: Response) => {
@@ -12,4 +14,6 @@ const loginUser = async (req: Request, res: Response) => {
 };
 
 const route: Router = Router();
-export default route.post('/', loginUser);
+route.post('/', rescue(schemas.loginSchema), rescue(loginUser));
+
+export default route;
