@@ -1,8 +1,4 @@
-import { Response, NextFunction } from 'express';
-import type { IError } from './domain-error';
+import { Request, Response, NextFunction } from 'express';
 
-export default (err: IError, _req: Request, res: Response, _next: NextFunction) => {
-  const code = err.status || 500;
-  return res.status(code)
-    .json({ code: 'internalServerError', message: 'Internal server error' });
-};
+export default (err: Error, _req: Request, res: Response, _next: NextFunction) => res.status(500)
+  .json({ message: 'Internal server error' });

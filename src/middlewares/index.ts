@@ -1,4 +1,6 @@
 import joiError from './joi-error';
+import serverError from './server-error';
 import domainError from './domain-error';
+import generateError from './generateError';
 
-export default { joiError, domainError };
+export { joiError, domainError, serverError, generateError };

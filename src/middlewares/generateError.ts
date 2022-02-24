@@ -1,12 +1,7 @@
-// interface IError {
-//   code: string | number;
-//   message: string | object;
-//   name: string;
-//   stack?: string | undefined;
-// }
+import { IError } from '../interfaces';
 
-// export default (code: number | string, message: object | string): never => {
-//   const e: Error = new Error();
-//   const newError: IError = { ...e, code, message };
-//   throw newError;
-// };
+export default (code: string, message: string) => {
+  const e: Error = new Error();
+  const newError: IError = { ...e, code, message };
+  throw newError;
+};

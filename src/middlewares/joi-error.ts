@@ -1,16 +1,8 @@
 import { Request, Response, NextFunction } from 'express';
 import { ValidationError } from 'joi';
+import type { IMapErrorJoi } from '../interfaces';
 
-interface IMapError {
-  'any.required': number;
-  'string.base': number;
-  'string.min': number;
-  'number.min': number;
-  'string.length': number;
-  'string.empty': number;
-}
-
-const mapErro: IMapError = {
+const mapErro: IMapErrorJoi = {
   'any.required': 400,
   'string.base': 422,
   'string.min': 422,
@@ -22,6 +14,6 @@ const mapErro: IMapError = {
 export default (err: ValidationError, _req: Request, res: Response, next: NextFunction) => {
   if (!err.isJoi) return next(err);
 
-  const status = mapErro[err.details[0].type as keyof IMapError];
+  const status = mapErro[err.details[0].type as keyof IMapErrorJoi];
   return res.status(status).json({ error: `${err.details[0].message.replace(/"/g, '')}` });
 };

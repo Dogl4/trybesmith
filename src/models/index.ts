@@ -1,3 +1,4 @@
 import userModel from './userModel';
+import loginModel from './loginModel';
 
-export default userModel;
+export { userModel, loginModel };

@@ -1,16 +1,10 @@
 import jwt from 'jsonwebtoken';
+import { IUser } from '../interfaces';
 
 const JWT_SCRET = 'secret';
 
-interface IData {
-  username?: string;
-  classe?: string;
-  level?: number;
-  password?: string;
-}
-
-export default (data: IData) => {
-  const payload = { isAdmin: false, data };
+export default (user: IUser) => {
+  const payload = { isAdmin: false, user };
   const token = jwt.sign(payload, JWT_SCRET, {
     algorithm: 'HS256',
     expiresIn: '1h',

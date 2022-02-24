@@ -8,4 +8,4 @@ const router: Router = Router();
 
 export default router
   .use('/users', schemas.userSchema, rescue(userController))
-  .use('/login', rescue(loginController));
+  .use('/login', rescue(schemas.loginSchema), rescue(loginController));

@@ -1,4 +1,4 @@
-// import userServices from './userServices';
-import userServices from './userServices';
+import userService from './userService';
+import loginService from './loginService';
 
-export default userServices;
+export { userService, loginService };
