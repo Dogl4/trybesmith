@@ -6,4 +6,9 @@ const createProduct = async (reqBody: IProduct) => {
   return newProduct;
 };
 
-export default { createProduct };
+const getAllProducts = async () => {
+  const products = await productModel.getAllProducts();
+  return products;
+};
+
+export default { createProduct, getAllProducts };
