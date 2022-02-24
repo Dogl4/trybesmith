@@ -8,7 +8,7 @@ interface IMapError {
   UnprocessableEntity: number;
 }
 
-const errorMap: IMapError | any = {
+const errorMap: IMapError = {
   NotFound: 404,
   Conflict: 409,
   BadRequest: 400,
@@ -16,8 +16,13 @@ const errorMap: IMapError | any = {
   UnprocessableEntity: 422,
 };
 
+export interface IError extends Error {
+  code: number | keyof IMapError;
+  status?: number;
+}
+
 // Na dúvida coloque um console.log('err', err);
-export default (err: any, _req: Request, res: Response, next: NextFunction) => {
-  if (!err.code || !errorMap[err.code]) return next(err);
-  res.status(errorMap[err.code]).json({ error: err.message });
+export default (err: IError, _req: Request, res: Response, next: NextFunction) => {
+  if (!err.code || !errorMap[err.code as keyof IMapError]) return next(err);
+  res.status(errorMap[err.code as keyof IMapError]).json({ error: err.message });
 };
