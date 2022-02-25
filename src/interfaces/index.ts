@@ -1,7 +1,7 @@
 import type { IUserJoi, IUser, IUserMoreId } from './user';
 import type { IMapError, IError, IMapErrorJoi } from './error';
-import type { IProduct, INewProduct } from './product';
-import type { IOrder, IOrderModel } from './order';
+import type { IProduct, INewProduct, IProductFull } from './product';
+import type { IOrder, IOrderModel, IOrderGet } from './order';
 
 export {
   IUserJoi,
@@ -12,6 +12,8 @@ export {
   IUserMoreId,
   IProduct,
   INewProduct,
+  IProductFull,
   IOrder,
   IOrderModel,
+  IOrderGet,
 };

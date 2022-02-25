@@ -1,6 +1,6 @@
 import { ResultSetHeader } from 'mysql2';
 import connection from './connection';
-import { IOrder, IOrderModel } from '../interfaces';
+import { IOrder, IOrderModel, IOrderGet } from '../interfaces';
 
 const linkProductOrder = async (order: IOrder) => {
   const { orderId, products } = order;
@@ -22,4 +22,12 @@ const resgisterProductOrder = async (order: IOrder) => {
   await linkProductOrder({ products, orderId });
 };
 
-export default { resgisterProductOrder };
+const getOrderById = async (orderGet: IOrderGet) => {
+  const { id: orderId } = orderGet;
+
+  const query = 'SELECT * FROM Trybesmith.Products WHERE orderId = ?';
+  const [row] = await connection.execute<ResultSetHeader>(query, [orderId]);
+  return row;
+};
+
+export default { resgisterProductOrder, getOrderById };

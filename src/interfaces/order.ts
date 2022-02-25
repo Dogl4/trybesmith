@@ -12,3 +12,8 @@ export interface IOrderModel extends IOrder, IUserMoreId {
   idProduct: number;
   products: number[];
 }
+
+export interface IOrderGet {
+  id?: string;
+  userId?: number;
+}

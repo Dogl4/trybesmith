@@ -10,3 +10,10 @@ export interface INewProduct {
     id: number;
   };
 }
+
+export interface IProductFull {
+  id: number;
+  name: string;
+  amount: number;
+  orderId: number;
+}

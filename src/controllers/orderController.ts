@@ -1,8 +1,9 @@
 import { Request, Response, Router } from 'express';
+import rescue from 'express-rescue';
 import { orderService } from '../services';
 import jwtAuth from '../utils/jwtAuth';
 import schemas from '../schemas';
-import { IOrder } from '../interfaces';
+import { IOrder, IOrderGet } from '../interfaces';
 
 const registerProductOrder = async (req: Request, res: Response) => {
   const { products } = req.body as IOrder;
@@ -11,8 +12,18 @@ const registerProductOrder = async (req: Request, res: Response) => {
   res.status(201).json(result);
 };
 
-const route = Router();
+const getOrderById = async (req: Request, res: Response) => {
+  const { id } = req.params; 
+  const userId = res.locals.id;
+
+  const orderGet: IOrderGet = { id, userId };
+  const result = await orderService.getOrderById(orderGet);
+  res.status(200).json(result);
+};
+
+const route: Router = Router();
 route
-  .use('/', jwtAuth, schemas.orderSchema, registerProductOrder);
+  .post('/', jwtAuth, schemas.orderSchema, rescue(registerProductOrder))
+  .get('/:id', jwtAuth, rescue(getOrderById));
 
 export default route;
