@@ -17,4 +17,12 @@ const getOrderById = async (orderGet: IOrderGet) => {
   return { ...orderGet, products };
 };
 
-export default { resgisterProductOrder, getOrderById };
+const getAllOrders = async () => {
+  /* const allOrders =  */await orderModel.getAllOrders();
+
+  // if (!products.length) generateError('NotFound', 'Orders not found');
+
+  // return { orders: products };
+};
+
+export default { resgisterProductOrder, getOrderById, getAllOrders };

@@ -21,9 +21,15 @@ const getOrderById = async (req: Request, res: Response) => {
   res.status(200).json(result);
 };
 
+const getAllOrders = async (req: Request, res: Response) => {
+  /* const result = await  */orderService.getAllOrders();
+  res.status(200).json({ result: 'ok' });
+};
+
 const route: Router = Router();
 route
   .post('/', jwtAuth, schemas.orderSchema, rescue(registerProductOrder))
-  .get('/:id', jwtAuth, rescue(getOrderById));
+  .get('/:id', jwtAuth, rescue(getOrderById))
+  .get('/', jwtAuth, rescue(getAllOrders));
 
 export default route;

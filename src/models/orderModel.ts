@@ -30,4 +30,17 @@ const getOrderById = async (orderGet: IOrderGet) => {
   return row;
 };
 
-export default { resgisterProductOrder, getOrderById };
+const getAllOrders = async () => {
+  const query = `SELECT 
+      Trybesmith.Orders.id, userId, Trybesmith.Products.id as productsId 
+  FROM 
+      Trybesmith.Orders 
+  INNER JOIN 
+      Trybesmith.Products 
+  ON 
+      Trybesmith.Orders.id = Trybesmith.Products.orderId;`;
+  const [rows] = await connection.execute<ResultSetHeader>(query);
+  console.log('ModelOrder', rows);
+};
+
+export default { resgisterProductOrder, getOrderById, getAllOrders };
