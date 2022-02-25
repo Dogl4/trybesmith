@@ -17,4 +17,10 @@ const getAllProducts = async () => {
   return products;
 };
 
-export default { createProduct, getAllProducts };
+const produtosByOrder = async (id: number | undefined) => {
+  const query = 'SELECT id FROM Trybesmith.Products WHERE orderId = ?';
+  const [product] = await connection.execute(query, [id]);
+  return product as [] | IProduct;
+};
+
+export default { createProduct, getAllProducts, produtosByOrder };

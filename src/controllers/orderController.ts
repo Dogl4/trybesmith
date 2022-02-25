@@ -15,15 +15,15 @@ const registerProductOrder = async (req: Request, res: Response) => {
 const getOrderById = async (req: Request, res: Response) => {
   const { id } = req.params; 
   const userId = res.locals.id;
-
   const orderGet: IOrderGet = { id, userId };
   const result = await orderService.getOrderById(orderGet);
   res.status(200).json(result);
 };
 
 const getAllOrders = async (req: Request, res: Response) => {
-  /* const result = await  */orderService.getAllOrders();
-  res.status(200).json({ result: 'ok' });
+  const result = await orderService.getAllOrders();
+  console.log(result);
+  res.status(200).json(result);
 };
 
 const route: Router = Router();
