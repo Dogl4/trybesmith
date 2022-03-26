@@ -3,7 +3,7 @@
 
 ## 📷 Screenshot
 
-[![Screenshot](./trybesmith.gif)]
+![Screenshot](./trybesmith.gif)
 
   
 
